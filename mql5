@@ -1,0 +1,83 @@
+
+// Top Currency Strength
+// Developer's site: forexroboteasy.com
+// Development: Forex Robot Easy Team
+
+#property strict
+
+// Indicator input parameters
+input bool verticalDisplay = false; // Display currencies vertically if true, horizontally if false
+
+// Indicator buffers
+double CurrencyStrengthBuffer[];
+
+// Indicator initialization
+int OnInit()
+{
+    // Set indicator buffers
+    SetIndexBuffer(0, CurrencyStrengthBuffer, INDICATOR_DATA);
+
+    // Set indicator labels
+    SetIndexLabel(0, 'Currency Strength');
+
+    return INIT_SUCCEEDED;
+}
+
+// Indicator calculation
+int OnCalculate(const int rates_total,
+                const int prev_calculated,
+                const datetime &time[],
+                const double &open[],
+                const double &high[],
+                const double &low[],
+                const double &close[],
+                const long &tick_volume[],
+                const long &volume[],
+                const int &spread[])
+{
+    // Calculate currency strength for each currency pair
+    for (int i = 0; i < rates_total; i++)
+    {
+        double currencyStrength = CalculateCurrencyStrength(open[i], high[i], low[i], close[i]);
+
+        if (verticalDisplay)
+        {
+            CurrencyStrengthBuffer[i] = currencyStrength;
+        }
+        else
+        {
+            CurrencyStrengthBuffer[i] = currencyStrength * 100;
+        }
+    }
+
+    return rates_total;
+}
+
+// Function to calculate currency strength using relevant algorithms
+double CalculateCurrencyStrength(const double open,
+                                 const double high,
+                                 const double low,
+                                 const double close)
+{
+    // Calculation algorithm using open, high, low, and close prices
+
+    return 0; // Placeholder return value, replace with actual calculation
+}
+
+// Function to adjust indicator configurations
+void AdjustIndicatorConfigurations()
+{
+    // Code to adjust indicator configurations
+}
+
+// Function to identify strongest and weakest currencies
+void IdentifyStrongestAndWeakestCurrencies()
+{
+    // Code to identify strongest and weakest currencies
+}
+
+// Function to facilitate strategic decision-making based on the indicator's findings
+void MakeStrategicDecisions()
+{
+    // Code to make strategic decisions based on the indicator's findings
+}
